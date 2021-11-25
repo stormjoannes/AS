@@ -9,13 +9,26 @@ class Agent:
     """
     actions = {"forward": 0, "backward": 1, "right": 2, "left": 3}
 
-    def __init__(self, pos, maze: Maze, policy: Policy):
+    def __init__(self, pos, maze: Maze, policy: Policy, discount):
         self.pos = pos
         self.maze = Maze
         self.policy = Policy
+        self.discount = discount
+
+    def value_function(self):
+        """
+        Value function
+        """
+        pass
 
     def choose_action(self, policy, state):
+        """
+        Actions choser
+        """
         pass
     
     def value_iteration(self):
+        """
+        Value iteration.
+        """
         pass

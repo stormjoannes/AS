@@ -17,4 +17,4 @@ class Policy:
         """
         Choosing which action will be taken, Beginning with a random policy.
         """
-        return random.choice(action)
+        return random.choice(0, 1, 2, 3)

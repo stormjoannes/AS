@@ -6,30 +6,15 @@ from agent import Agent
 from policy import Policy
 
 
-def fillDict(value, sizeHorizontal=4, sizeVertical=4):
-    index = 0
-    dict = {}
-    for vertical in range(sizeVertical):
-        for horizontal in range(sizeHorizontal):
-            coord = (vertical, horizontal)
-            dict[coord] = value[index]
-            index += 1
-
-    return dict
-
-
 delta = 0.1
+discount = 1
 start_position = [3, 2]
-values = [0, 0, 0, 0,
-          0, 0, 0, 0,
-          0, 0, 0, 0,
-          0, 0, 0, 0]
-rewards = [-1, -1, -1, 40,
-           -1, -1, -10, -10,
-           -1, -1, -1, -1,
-           10, -2, -1, -1]
 
 maze = Maze()
-maze.grid, maze.rewards = fillDict(values), fillDict(rewards)
-agent = Agent(start_position)
+maze.position = start_position
+maze.create_maze_values()
+
+policy = Policy()
+
+agent = Agent(start_position, maze, policy, discount)
 print(maze.rewards)
