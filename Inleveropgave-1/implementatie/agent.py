@@ -31,4 +31,7 @@ class Agent:
         """
         Value iteration.
         """
+        for key in self.maze.grid:
+            max = ()
+
         pass
