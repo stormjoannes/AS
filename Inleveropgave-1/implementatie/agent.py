@@ -9,11 +9,31 @@ class Agent:
     """
     actions = {"forward": 0, "backward": 1, "right": 2, "left": 3}
 
-    def __init__(self, pos, maze: Maze, policy: Policy, discount):
-        self.pos = pos
+    def __init__(self, position, maze: Maze, policy: Policy, discount, delta_treshold):
+        self.position = position
         self.maze = Maze
         self.policy = Policy
         self.discount = discount
+        self.delta_treshold = delta_treshold
+
+    def stepper(self):
+        """
+        """
+        movement = self.choose_action(self.position)
+        self.position = self.maze.stepper(self.position, movement)
+
+    def value_iteration(self):
+        """
+        Value iteration.
+        """
+        iteration = 0
+        while delta >= self.delta_treshold:
+            iteration += 1
+            for pos in self.maze.grid:
+                if pos not in self.maze.terminal_states:
+
+
+        pass
 
     def value_function(self):
         """
@@ -21,17 +41,8 @@ class Agent:
         """
         pass
 
-    def choose_action(self, policy, state):
+    def choose_action(self, state):
         """
         Actions choser
         """
-        pass
-    
-    def value_iteration(self):
-        """
-        Value iteration.
-        """
-        for key in self.maze.grid:
-            max = ()
-
-        pass
+        return self.policy.select_action(state)
