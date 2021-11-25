@@ -8,23 +8,22 @@ class Maze:
     
     def __init__(self):
         self.position = []
-        self.grid = []
         self.rewards = {}
         self.grid = {}
         self.terminal_states = []
         self.actions = {0: [-1, 0], 1: [1, 0], 2: [0, 1], 3: [0, -1]}
 
 
-    def stepper(self, action):
+    def stepper(self, position, action):
         movement = self.actions[action]
-        new_position = [self.position[0] + movement[0], self.position[1] + movement[0]]
-        values = self.grid[new_position]
-        reward = self.rewards[new_position]
+        new_position = [position[0] + movement[0], position[1] + movement[0]]
 
-        if self.position in self.terminal_states:
-            return None
+        if new_position in self.grid:
+            return self.grid[new_position]
         else:
-            return values, reward
+            return position
+        # if self.position in self.terminal_states:
+
 
 
     def fillDict(self, value, sizeHorizontal=4, sizeVertical=4):

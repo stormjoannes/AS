@@ -6,7 +6,7 @@ from agent import Agent
 from policy import Policy
 
 
-delta = 0.1
+delta_treshold = 0.1
 discount = 1
 start_position = [3, 2]
 
@@ -16,5 +16,5 @@ maze.create_maze_values()
 
 policy = Policy()
 
-agent = Agent(start_position, maze, policy, discount)
+agent = Agent(start_position, maze, policy, discount, delta_treshold)
 print(maze.rewards)

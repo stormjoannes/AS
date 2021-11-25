@@ -3,7 +3,8 @@ from dataclasses import dataclass
 
 @dataclass
 class State:
-    xy_coord = [0, 0]
+    x = 0
+    y = 0
     reward = 0
     values = []
     terminating_state = False
