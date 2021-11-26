@@ -1,13 +1,9 @@
-"""In this file we define our maze class"""
+"""In this file we define create our maze"""
 
 
 class Maze:
-    """
-    hi
-    """
     
     def __init__(self):
-        self.position = []
         self.rewards = {}
         self.grid = {}
         self.terminal_states = []
@@ -16,14 +12,12 @@ class Maze:
 
     def stepper(self, position, action):
         movement = self.actions[action]
-        new_position = [position[0] + movement[0], position[1] + movement[0]]
+        new_position = (position[0] + movement[0], position[1] + movement[1])
 
         if new_position in self.grid:
-            return self.grid[new_position]
+            return new_position
         else:
             return position
-        # if self.position in self.terminal_states:
-
 
 
     def fillDict(self, value, sizeHorizontal=4, sizeVertical=4):
@@ -42,17 +36,17 @@ class Maze:
 
 
     def create_maze_values(self):
-        values = [0, 0, 0, 0,
-                  0, 0, 0, 0,
-                  0, 0, 0, 0,
-                  0, 0, 0, 0]
+        values = [[0], [0], [0], [0],
+                  [0], [0], [0], [0],
+                  [0], [0], [0], [0],
+                  [0], [0], [0], [0]]
 
         rewards = [-1, -1, -1, 40,
                    -1, -1, -10, -10,
                    -1, -1, -1, -1,
                    10, -2, -1, -1]
 
-        self.terminal_states = [[0, 3], [3, 0]]
+        self.terminal_states = [(0, 3), (3, 0)]
 
         self.grid, self.rewards = self.fillDict(values), self.fillDict(rewards)
 

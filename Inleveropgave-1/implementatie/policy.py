@@ -3,9 +3,6 @@ import random
 
 
 class Policy:
-    """
-    hi
-    """
     
     def __init__(self):
         """
@@ -13,8 +10,8 @@ class Policy:
         """
         self.policy = "random"
 
-    def select_action(self, state):
+    def select_action(self):
         """
-        Choosing which action will be taken, Beginning with a random policy.
+        Deciding which action will be chosen, Beginning with a random policy.
         """
         return random.choice(0, 1, 2, 3)
