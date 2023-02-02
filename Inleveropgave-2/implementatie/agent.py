@@ -1,7 +1,4 @@
 """In this file we will iterate over values"""
-from maze import Maze
-from policy import Policy
-
 
 class Agent:
 
@@ -27,16 +24,8 @@ class Agent:
                 # Check if position isn't an terminal state.
                 if position not in self.maze.terminal_states:
                     # Gets the coords of the states surrounding the current position.
-                    up = self.maze.stepper(position, 0)
-                    down = self.maze.stepper(position, 1)
-                    right = self.maze.stepper(position, 2)
-                    left = self.maze.stepper(position, 3)
 
-                    # Get all 4 surrounding values calculated, pick the max from these values.
-                    new_value = max(self.maze.rewards[up] + (self.discount * self.maze.grid[up][iteration]),
-                                    self.maze.rewards[down] + (self.discount * self.maze.grid[down][iteration]),
-                                    self.maze.rewards[right] + (self.discount * self.maze.grid[right][iteration]),
-                                    self.maze.rewards[left] + (self.discount * self.maze.grid[left][iteration]))
+                    new_value = self.policy.select_action(position, iteration)
 
                     self.maze.grid[position].append(new_value)
                     new_delta = abs(self.maze.grid[position][iteration] - new_value)
@@ -48,11 +37,11 @@ class Agent:
             self.print_iteration(iteration)
             iteration += 1
 
-    def choose_action(self):
-        """
-        Choose where the next step will be.
-        """
-        return self.policy.select_action()
+    # def choose_action(self):
+    #     """
+    #     Choose where the next step will be.
+    #     """
+    #     return self.policy.select_action()
 
     def print_iteration(self, iteration):
         """
@@ -61,6 +50,8 @@ class Agent:
         values = []
         for coord in self.maze.grid:
             values.append(self.maze.grid[coord][iteration])
+
+        values = [round(value, 1) for value in values]
 
         print("Iteration: ", iteration)
         print(values[0: 4])
