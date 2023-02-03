@@ -2,12 +2,12 @@
 
 class Agent:
 
-    def __init__(self, position, Maze, Policy, discount, delta_treshold):
+    def __init__(self, position, Maze, Policy, discount, delta_threshold):
         self.position = position
         self.maze = Maze
         self.policy = Policy
         self.discount = discount
-        self.delta_treshold = delta_treshold
+        self.delta_threshold = delta_threshold
         self.actions = {0: [-1, 0], 1: [1, 0], 2: [0, 1], 3: [0, -1]}
 
     def value_iteration(self):
@@ -15,9 +15,10 @@ class Agent:
         Iterating over the maze grid and calculate each value for each iteration.
         """
         # Make sure the first time iteration it will always go into the while loop.
-        delta = self.delta_treshold + 1
+        delta = self.delta_threshold + 1
         iteration = 0
-        while delta >= self.delta_treshold:
+        while delta >= self.delta_threshold:
+            print(f"Delta: {delta}, Delta threshold: {self.delta_threshold}")
             # Set delta low so that first loop delta will always be overwritten.
             delta = -1
             for position in self.maze.grid:
@@ -34,14 +35,15 @@ class Agent:
                     # If state is terminal state, new value is always zero.
                     self.maze.grid[position].append(0)
 
+            print(f"End delta: {delta}")
             self.print_iteration(iteration)
             iteration += 1
 
-    # def choose_action(self):
-    #     """
-    #     Choose where the next step will be.
-    #     """
-    #     return self.policy.select_action()
+    def choose_action(self):
+        """
+        Choose where the next step will be.
+        """
+        return self.policy.select_action()
 
     def print_iteration(self, iteration):
         """
